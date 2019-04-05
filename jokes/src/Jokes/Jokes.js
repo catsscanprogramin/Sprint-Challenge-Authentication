@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import requiresAuth from '../auth/requiresAuth';
 
+import './Jokes.css';
+
 class Jokes extends React.Component {
   state = {
     jokes: []
@@ -11,12 +13,19 @@ class Jokes extends React.Component {
   render() {
     return (
       <>
-        <h2>List of Jokes</h2>
-        <ul>
+        <h2 className='joke-title'>Dad Jokes of the Year</h2>
+        <div className='jokes-container'>
           {this.state.jokes.map(joke => (
-            <li key={joke.id}>{joke.joke}</li>
+            <p key={joke.id} className='joke'>
+              {joke.joke}
+            </p>
           ))}
-        </ul>
+        </div>
+        <img
+          src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/c6855658140225.59f0d249d351b.jpg'
+          alt='dad-img'
+          className='dad-img'
+        />
       </>
     );
   }

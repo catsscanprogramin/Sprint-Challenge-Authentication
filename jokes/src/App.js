@@ -9,14 +9,19 @@ class App extends Component {
   render() {
     return (
       <>
-        <header>
-          <NavLink to='/'>Home</NavLink>
-          &nbsp;|&nbsp;
-          <NavLink to='/login'>Login</NavLink>
-          &nbsp;|&nbsp;
-          <NavLink to='/jokes'>Jokes</NavLink>
-          &nbsp;|&nbsp;
-          <button onClick={this.logout}>Logout</button>
+        <header className='nav'>
+          <NavLink to='/' className='links'>
+            Home
+          </NavLink>
+          <NavLink to='/login' className='links'>
+            Login
+          </NavLink>
+          <NavLink to='/jokes' className='links'>
+            Jokes
+          </NavLink>
+          <button onClick={this.logout} className='logout-btn'>
+            Logout
+          </button>
         </header>
         <main>
           <Route path='/' exact />
