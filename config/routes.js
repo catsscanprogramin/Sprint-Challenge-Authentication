@@ -1,14 +1,36 @@
+// ---------------------------DEPENDS------------------------------ //
 const axios = require('axios');
-
-const { authenticate } = require('../auth/authenticate');
-
+const bcrypt = require('bcryptjs');
+const { authenticate, generateToken } = require('./middleware.js');
+const db = require('../database/dbConfig.js');
+// ---------------------------EXPORTS------------------------------ //
 module.exports = server => {
   server.post('/api/register', register);
   server.post('/api/login', login);
   server.get('/api/jokes', authenticate, getJokes);
 };
-
-function register(req, res) {}
+// ---------------------------FUNCTIONS------------------------------ //
+function register(req, res) {
+  const creds = req.body;
+  const hash = bcrypt.hashSync(creds.password, 10);
+  creds.password = hash;
+  if (!creds || !creds.username || !creds.password) {
+    res.status(400).json({
+      message:
+        'Sorry, both username and password are required, I dont make the rules homie.'
+    });
+  } else {
+    db('users')
+      .insert(creds)
+      .then(user => {
+        const token = generateToken(user);
+        res.status(201).json({ id: user.id, token });
+      })
+      .catch(err => {
+        res.status(500).json(err.message);
+      });
+  }
+}
 
 function login(req, res) {}
 
