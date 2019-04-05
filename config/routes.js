@@ -8,17 +8,13 @@ module.exports = server => {
   server.get('/api/jokes', authenticate, getJokes);
 };
 
-function register(req, res) {
-  // implement user registration
-}
+function register(req, res) {}
 
-function login(req, res) {
-  // implement user login
-}
+function login(req, res) {}
 
 function getJokes(req, res) {
   const requestOptions = {
-    headers: { accept: 'application/json' },
+    headers: { accept: 'application/json' }
   };
 
   axios
