@@ -10,7 +10,8 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className='login-form'>
+          <h1 className='login-header'>Login</h1>
           <div>
             <label htmlFor='username' />
             <input
@@ -18,6 +19,7 @@ class Login extends React.Component {
               onChange={this.handleInputChange}
               id='username'
               type='text'
+              className='login-input'
             />
           </div>
           <div>
@@ -27,10 +29,11 @@ class Login extends React.Component {
               onChange={this.handleInputChange}
               id='password'
               type='password'
+              className='login-input'
             />
           </div>
           <div>
-            <button type='submit' className='logout-btn'>
+            <button type='submit' className='login-btn'>
               Login
             </button>
           </div>

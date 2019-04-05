@@ -6,6 +6,9 @@ import Login from './Login/Login';
 import './App.css';
 
 class App extends Component {
+  logout = () => {
+    localStorage.removeItem('token');
+  };
   render() {
     return (
       <>
